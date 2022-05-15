@@ -1,6 +1,6 @@
 /**
  * 
- */
+
 
 var DiceGame={
 		turn : 0,
@@ -20,3 +20,4 @@ var DiceGame={
 			}
 		}
 }
+ */
