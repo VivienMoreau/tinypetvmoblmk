@@ -2,7 +2,6 @@ package foo;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -23,12 +22,18 @@ import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.KeyRange;
 import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.PropertyProjection;
 import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.CompositeFilterOperator;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
 
-@WebServlet(name = "PetServlet", urlPatterns = { "/petition" })
-public class PetitionServlet extends HttpServlet {
+import com.google.appengine.repackaged.com.google.datastore.v1.CompositeFilter;
+import com.google.appengine.repackaged.com.google.datastore.v1.Projection;
+import com.google.appengine.repackaged.com.google.datastore.v1.PropertyFilter;
+
+@WebServlet(name = "petitionRemoveAll", urlPatterns = { "/petitionRemoveAll" })
+public class PetitionRemoveAll extends HttpServlet {
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -36,37 +41,22 @@ public class PetitionServlet extends HttpServlet {
 		response.setContentType("text/html");
 		response.setCharacterEncoding("UTF-8");
 
-		Random r = new Random();
+
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
-		// Create petition
-		for (int i = 0; i < 500; i++) {
-			Entity e = new Entity("Petition", "P" + i);
-			int owner= r.nextInt(1000);
-			e.setProperty("Owner", "U" + owner);
-			e.setProperty("Date", new Date());
-			e.setProperty("Body", "bla bla");
-			
-			
-			// Create random votants
-			HashSet<String> fset = new HashSet<String>();
-			//while (fset.size() < 200) {
-			for(int j=0; j<200; j++) {
-				fset.add("U" + r.nextInt(1000));
-			}
-			e.setProperty("Votants", fset);
-			e.setProperty("nbVotants", fset.size());
-			
-			// Create random tags
-						HashSet<String> ftags = new HashSet<String>();
-						while (ftags.size() <10) {
-							ftags.add("T" + r.nextInt(1000));
-						}
-						e.setProperty("tags", ftags);
-
-			datastore.put(e);
-			response.getWriter().print("<li> created post:" + e.getKey() + "<br>");
-			
+		Query q = new Query("Petition");
+		PreparedQuery pq = datastore.prepare(q);
+		List<Entity> result = pq.asList(FetchOptions.Builder.withDefaults());
+		for (Entity entity : result) {
+			datastore.delete(entity.getKey());			
+			response.getWriter().print("<li> deleting" + entity.getKey()+"<br>");
+		}
+		Query u = new Query("User");
+		PreparedQuery pu = datastore.prepare(u);
+		List<Entity> resultu = pu.asList(FetchOptions.Builder.withDefaults());
+		for (Entity entity : resultu) {
+			datastore.delete(entity.getKey());			
+			response.getWriter().print("<li> deleting" + entity.getKey()+"<br>");
 		}
 	}
 }
