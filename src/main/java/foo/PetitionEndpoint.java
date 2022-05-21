@@ -40,7 +40,10 @@ import com.google.appengine.api.datastore.QueryResultList;
 import com.google.appengine.api.datastore.Transaction;
 
 @Api(name = "myApi",
-     version = "v1"
+	version = "v1",
+	audiences = "527621972350-qlpn957kak51r0subapta5r36h5t3f6e.apps.googleusercontent.com",
+	clientIds = "527621972350-qlpn957kak51r0subapta5r36h5t3f6e.apps.googleusercontent.com"
+
 )
 public class PetitionEndpoint {
 	
