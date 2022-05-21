@@ -11,9 +11,38 @@
 
 Be sure you loaded this page with "https://"
 
+
+<h2>Tiny Pet</h2>
+<li><a href="/index5.html">Acceuil Web App</a>
+
+<h2>Config</h2>
+	<li><a href="/petitionInit">Initialisation des petitions ()</a>
+	<li><a href="/petitionRemoveAll">Suppression des donnees</a>
+
+<h2>Requetes</h2>
+	<li><a href="/petitionSigned">Petition signees par id0_4</a>
+	<li><a href="/top100Petition">Top 100 petitions signés</a>
+	
+<h2>Api</h2>
+	<li><a href="/_ah/api/myApi/v1/petition/signed/top100">top 100 petitions (triées par date et nombre de votant)</a>
+	<li><a href="/_ah/api/myApi/v1/petition/signed/top10/{last}">top 10 petitions signé + pagination</a>
+	<li><a href="/_ah/api/myApi/v1/petition/news/top10/{last}">top 10 petitions recentes + pagination</a>
+	<li><a href="/_ah/api/myApi/v1/petition/objectif-signataire/{petitionID}/{objectif}">Update objectif petition</a>
+	<li><a href="/_ah/api/myApi/v1/petition/info/{petitionID}">info Petition</a>
+	<li><a href="/_ah/api/myApi/v1/petition/add">Ajouter Petition</a>
+	<li><a href="/_ah/api/myApi/v1/petition/update">Modifier Petition</a>
+	<li><a href="/_ah/api/myApi/v1/petition/delete/{petitionID}">delete Petition</a>
+	<li><a href="/_ah/api/myApi/v1/signature/add/{petitionID}/{userID}">add Signature</a>
+	<li><a href="/_ah/api/myApi/v1/signature/delete/{petitionID}/{userID}">delete Signature</a>
+	<li><a href="/_ah/api/myApi/v1/petition/created/{userID}/{last}">petitions crées</a>
+	<li><a href="/_ah/api/myApi/v1/petition/signed/{userID}/{last}">petitions signées</a>
+	<li><a href="/_ah/api/myApi/v1/search/tag/{tag}/{last}">Search by tag</a>
+	<li><a href="/_ah/api/myApi/v1/search/titre/{titre}/{last}">Search by titre</a>
+
 <h2>Check if it works</h2>
 	<li><a href='/hello'>The servlet Hello world</a>
-	
+	<li><a href='/index5.html'>TinyPet</a>
+
 <h2>Check login Google</h2>	
 	<li><a href="https://developers.google.com/identity/sign-in/web/sign-in#before_you_begin">see docs</a>
 	<li><a href='/userapi'>Login with Google (servlet)</a>
