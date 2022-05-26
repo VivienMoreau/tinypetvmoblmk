@@ -53,40 +53,54 @@ public class PrefixServlet extends HttpServlet {
 
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
-		
-		LocalDate start = LocalDate.of(2019, Month.OCTOBER, 14);
-		LocalDate end = LocalDate.now();
+		Entity e;
+		// Create Petitions 
+		//pet 1
+		e = new Entity("Petition", "P" + 1);
+		e.setProperty("titre","titre1");
+		e.setProperty("description", "description1");
+		e.setProperty("image", "https://static-cse.canva.com/blob/187617/free-stock-photos.jpg");
+		e.setProperty("objectif",1);
+		e.setProperty("auteur","auteur1");
+		e.setProperty("dateCrea","01/01/2022");
+		e.setProperty("nbSignature",1);
+		datastore.put(e);
+		response.getWriter().print("<li> nouvelle petition :" + e.getKey() + "<br>");
 
-		
-		
-		// Create posts
-		for (int i = 0; i < 100; i++) {
-			for (int j=0;j<10;j++) {
-				LocalDate rdate = this.between(start, end);
-				Entity e = new Entity("Post", "f" +i+":"+rdate.toString());
-				e.setProperty("body", "blabla" + rdate.toString());
-				e.setProperty("url", "https://dummyimage.com/320x200/000/fff.jpg&text="+rdate.toString());
-				e.setProperty("owner", "f" + i);
-				e.setProperty("date",new Date());
+		//pet 2
+		e = new Entity("Petition", "P" + 2);
+		e.setProperty("titre","titre2");
+		e.setProperty("description", "description2");
+		e.setProperty("image", "https://www.referenseo.com/wp-content/uploads/2019/03/image-attractive-960x540.jpg");
+		e.setProperty("objectif",2);
+		e.setProperty("auteur","auteur2");
+		e.setProperty("dateCrea","02/02/2022");
+		e.setProperty("nbSignature",2);
+		datastore.put(e);
+		response.getWriter().print("<li> nouvelle petition :" + e.getKey() + "<br>");
 
-				// Create user friends
-				HashSet<String> toset = new HashSet<String>();
-				while (toset.size() < 5) {
-					toset.add("f" + r.nextInt(100));
-				}
-				e.setProperty("to", toset);
+		//pet 3
+		e = new Entity("Petition", "P" + 3);
+		e.setProperty("titre","titre1");
+		e.setProperty("description", "description1");
+		e.setProperty("image", "https://img.fotocommunity.com/les-coquelicots-de-warlaing-727050f3-8719-40fc-a218-824a29733583.jpg?height=1080");
+		e.setProperty("objectif",3);
+		e.setProperty("auteur","auteur3");
+		e.setProperty("dateCrea","03/03/2022");
+		e.setProperty("nbSignature",3);
+		datastore.put(e);
+		response.getWriter().print("<li> nouvelle petition :" + e.getKey() + "<br>");
 
-				HashSet<String> like = new HashSet<String>();
-				while (like.size() < 5) {
-					like.add("f" + r.nextInt(100));
-				}
-				e.setProperty("like", like);
-				e.setProperty("likec",like.size());
-				
-				datastore.put(e);
-				response.getWriter().print("<li> created post:" + e.getKey() + "<br>" + toset + "<br>");
-			}
-
-		}
+		//pet 4
+		e = new Entity("Petition", "P" + 4);
+		e.setProperty("titre","titre4");
+		e.setProperty("description", "description1");
+		e.setProperty("image", "https://palam.ca/wp-content/uploads/2018/11/D%C3%A9couvrez-trois-sites-d%E2%80%99images-gratuites-libre-de-droit-pour-votre-cr%C3%A9ativit%C3%A9e.jpg");
+		e.setProperty("objectif",4);
+		e.setProperty("auteur","auteur4");
+		e.setProperty("dateCrea","04/04/2022");
+		e.setProperty("nbSignature",4);
+		datastore.put(e);
+		response.getWriter().print("<li> nouvelle petition :" + e.getKey() + "<br>");
 	}
 }

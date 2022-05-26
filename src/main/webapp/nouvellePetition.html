@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html ng-app="petApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>TinyPet</title>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+    <section id="petapp" ng-controller="petController as petCtrl">
+        <header id="header">
+
+            <nav class="navbar-fixed navbar-dark bg-dark">
+                <a class="navbar-brand center" href="index.html">
+                    <img src="logo.png" height="150" width="150" alt="" />
+                </a>
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Parcourir les pétitions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" ng-disabled="PasCo" href="mesPetitions.html">Mes pétitions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" ng-disabled="PasCo" href="nouvellePetition.html">Nouvelle
+                            pétition</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Connexion google ici</a>
+                    </li>
+                </ul>
+            </nav>
+
+
+            <div class="containe">
+                <form class="px-4 py-3" id="pet-form" name="form" novalidate>
+                    <div class="row marge-haute-petit">
+                        <div class="col-3">
+                            <label>Titre :</label>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <input type="text" id="petLib" name="petTitre" ng-model="petCtrl.pet.titre" idautofocus/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row marge-haute-petit">
+                        <div class="col-3">
+                            <label>Thème :</label>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <input type="text" name="theme" ng-model="petCtrl.pet.theme" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row marge-haute-petit">
+                        <div class="col-3">
+                            <label>Description :</label>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <input type="text" name="description" ng-model="petCtrl.pet.description" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row marge-haute-petit">
+                        <div class="col-3">
+                            <label>Image :</label>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <input type="text" name="image" ng-model="petCtrl.pet.image" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row marge-haute-petit">
+                        <div class="col-3">
+                            <label>Objectif de signature :</label>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <input type="number" name="objectif" ng-model="petCtrl.pet.objectif" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group form-check marge-haute-petit">
+                        <div class="col-6">
+                            <input type="checkbox" class="form-check-input" ng-model="checkCond">
+                            <label class="form-check-label">j'ai lu et j'accepte les conditions</label>
+                            <div class="row">
+                                <small>Obligatoire</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group form-check marge-haute-petit">
+                        <div class="col-6">
+                            <input type="checkbox" class="form-check-input" ng-model="petCtrl.pet.afficheNom">
+                            <label class="form-check-label">Ne pas faire apparaître mon nom sur cette pétition</label>
+                        </div>
+                    </div>
+                    <div class="marge-haute-petit row">
+                        <div class="col-3">
+                            <input class="btn btn-primary" type="submit" ng-click="petCtrl.addPet(petCtrl.pet)" ng-disabled="!checkCond"></input>
+                        </div>
+                        <div class="col-3">
+                            <input class="btn btn-secondary" type="button" value="Reinitialiser" ng-click="petCtrl.clear()"></input>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+
+
+            <span ng-if="petCtrl.formHasError">Veuillez corriger les erreurs</span>
+        </header>
+    </section>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="NouvellePetitionController.js"></script>
+</body>
+</html>
