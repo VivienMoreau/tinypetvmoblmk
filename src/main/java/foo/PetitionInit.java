@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.api.server.spi.config.Description;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 
@@ -53,8 +54,10 @@ public class PetitionInit extends HttpServlet {
 		// Create users
 		for (int i = 0; i < 30; i++) {
 			for (int j = 0; j < 10; j++) {
-				String nom = banqueNom.get((int)(Math.random()*banqueNom.size()));
-				String prenom = banquePrenom.get((int)(Math.random()*banquePrenom.size()));
+				int indexNom = (int)(Math.random()*banqueNom.size());
+				int indexPrenom = (int)(Math.random()*banquePrenom.size());
+				String nom = banqueNom.get(indexNom);
+				String prenom = banquePrenom.get(indexPrenom);
 				String userId = prenom + "(" +i+")"+"."+nom+"("+j+")";
 				Entity e = new Entity("User", userId);
 				e.setProperty("nom", nom );
@@ -76,10 +79,16 @@ public class PetitionInit extends HttpServlet {
 						e1.printStackTrace();
 					}
 					String petitionId=  date_formated + ":" + userId + ":" + k;
+					int indexTheme = (int)(Math.random()*banqueTheme.size());
+					int indexTitre = (int)(Math.random()*banqueTitre.size());
+					int indexDescription = (int)(Math.random()*banqueDescription.size());
+					String Theme = banqueTheme.get(indexTheme);
+					String Titre = banqueTitre.get(indexTitre);
+					String Description = banqueDescription.get(indexDescription);
 					Entity p = new Entity("Petition", petitionId);
-					p.setProperty("theme", banqueTheme.get((int)(Math.random()*banqueTheme.size())));
-					p.setProperty("titre", banqueTitre.get((int)(Math.random()*banqueTitre.size())));
-					p.setProperty("description",banqueDescription.get((int)(Math.random()*banqueDescription.size())));
+					p.setProperty("theme", Theme);
+					p.setProperty("titre", Titre);
+					p.setProperty("description", Description);
 					p.setProperty("date", dateValue);
 					p.setProperty("update_at", dateValue);
 					p.setProperty("proprietaire",  userId);
