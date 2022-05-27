@@ -47,6 +47,16 @@ import com.google.appengine.api.datastore.Transaction;
 )
 public class PetitionEndpoint {
 	
+	@ApiMethod(name = "petitions", httpMethod = HttpMethod.GET)
+	public List<Entity> scores() {
+		Query q = new Query("Petition").addSort("titre", SortDirection.DESCENDING);
+
+		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+		PreparedQuery pq = datastore.prepare(q);
+		List<Entity> result = pq.asList(FetchOptions.Builder.withLimit(100));
+		return result;
+	}
+	
 	@ApiMethod(name = "addPetition", path="petition/add", httpMethod = ApiMethod.HttpMethod.POST)
 	public Entity addPetition(Petition p) {
 		Random r = new Random();

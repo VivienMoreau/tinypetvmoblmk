@@ -51,7 +51,20 @@
 		vm.signer = signer;
 
         //a récuperer depuis le back
-        vm.listePetitions = [
+        vm.listePetitions = {
+			list: [],
+			loadList: function() {
+				return m.request({
+					method: "GET",
+					url: "_ah/api/myApi/v1/petitions/"
+				})
+				.then(function(result) {
+					vm.listPet = result.items
+					console.log("got:",result.items)
+				})
+			}
+		}/*[
+			
             {titre:'titre3',description : 'description3',image:'https://img.fotocommunity.com/les-coquelicots-de-warlaing-727050f3-8719-40fc-a218-824a29733583.jpg?height=1080',objectif:'3',auteur:'moi',dateCrea:'03/03/2022',nbSignature:'3'},
             {titre:'titre2',description : 'description2',image:'https://www.referenseo.com/wp-content/uploads/2019/03/image-attractive-960x540.jpg',objectif:'2',auteur:'auteur2',dateCrea:'02/02/2022',nbSignature:'2'},
             {titre:'titre4',description : 'description4',image:'https://palam.ca/wp-content/uploads/2018/11/D%C3%A9couvrez-trois-sites-d%E2%80%99images-gratuites-libre-de-droit-pour-votre-cr%C3%A9ativit%C3%A9e.jpg',objectif:'4',auteur:'moi',dateCrea:'04/04/2022',nbSignature:'4'},
@@ -61,6 +74,20 @@
             {titre:'titre4',description : 'description4',image:'https://palam.ca/wp-content/uploads/2018/11/D%C3%A9couvrez-trois-sites-d%E2%80%99images-gratuites-libre-de-droit-pour-votre-cr%C3%A9ativit%C3%A9e.jpg',objectif:'4',auteur:'moi',dateCrea:'04/04/2022',nbSignature:'4'},
             {titre:'titre1',description : 'description1',image:'https://static-cse.canva.com/blob/187617/free-stock-photos.jpg',objectif:'1',auteur:'auteur1',dateCrea:'01/01/2022',nbSignature:'1'}
         ];
+
+		var Petition = {
+			list: [],
+			loadList: function() {
+				return m.request({
+					method: "GET",
+					url: "_ah/api/myApi/v1/petitions/"
+				})
+				.then(function(result) {
+					vm.listPet = result.items
+					console.log("got:",result.items)
+				})
+			}
+		}*/
 
 		function signer(idPet, user) {
 			var dateSignature = moment().format('L');
