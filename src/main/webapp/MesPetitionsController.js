@@ -73,5 +73,19 @@
             {titre:'titre4',description : 'description4',image:'image4',objectif:'4',auteur:'moi',dateCrea:'04/04/2022',nbSignature:4, dateSignature:'25/06/22'},
             {titre:'titre1',description : 'description1',image:'image1',objectif:'1',auteur:'auteur1',dateCrea:'01/01/2022',nbSignature:1, dateSignature:'28/06/22'}
         ];
+		var Score = {
+			list: [],
+			loadList: function() {
+				return m.request({
+					method: "GET",
+					url: "_ah/api/myApi/v1/topscores/"
+				})
+				.then(function(result) {
+					Score.list = result.items
+					console.log("got:",result.items)
+				})
+			}
+		}
+	
     }
 }());

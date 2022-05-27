@@ -11,6 +11,16 @@
     <include path="/**.js" >
     </include>
     
+    <include path="/**.css" ></include>
+    <include path="/**.svg" ></include>
+    <include path="/**.jpg" ></include>
+    <include path="/**.png" ></include>
+    <include path="/**.ico" ></include>
+    <include path="/**.eot" ></include>
+    <include path="/**.ttf" ></include>
+    <include path="/**.woff"></include>
+    <include path="/**.woff2"></include>
+    
   </static-files>
   <system-properties>
     <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
