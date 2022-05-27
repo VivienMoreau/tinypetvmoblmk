@@ -282,8 +282,22 @@ function scrollToTop() {
 	//window.scrollTo({top: 0, behavior: 'smooth'});
 	window.scrollTo({top: 0});
 	}
-	
 
+	function onSignIn(pseudo) {
+	  userConnecter.id = pseudo;
+	  userConnecter.prenom = pseudo;
+	  document.getElementById("login_google").classList.add('hide');
+	  document.getElementById("logout_google").classList.remove('hide');
+	}
+	function signOut() {
+		userConnecter.id = null;
+		userConnecter.prenom = "";
+		document.getElementById("login_google").classList.remove('hide');
+		document.getElementById("logout_google").classList.add('hide');
+	}
+
+
+/*
 function onSignIn(googleUser) {
 	  var profile = googleUser.getBasicProfile();
 	  userConnecter.id =profile.getId();
@@ -309,6 +323,7 @@ function signOut() {
    // console.log('Vous êtes deconnecté');
   });
 }
+*/
 function ShowCreateAndUpdatePetitionView(idItem=null,index=null){
 	if(idItem==null){
 		Api_CrudPetition.item = getPetitionObject();
