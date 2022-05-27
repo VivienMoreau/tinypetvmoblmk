@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html ng-app="petApp">
+
+<head lang="en">
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="style.css" />
+	<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+	<title>TinyPet</title>
+</head>
+
+<body>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+		crossorigin="anonymous"></script>
+
+	<section id="todoapp" ng-controller="affPetController as affPetCtrl">
+		<header id="header">
+
+			<nav class="navbar-fixed navbar-dark bg-dark">
+				<a class="navbar-brand center" href="index.html">
+					<img src="logo.png" height="150" width="150" alt="" />
+				</a>
+				<ul class="nav nav-tabs">
+					<li class="nav-item">
+						<a class="nav-link active" href="index.html">Parcourir les pétitions</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" ng-disabled="PasCo" href="mesPetitions.html">Mes pétitions</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" ng-disabled="PasCo" href="nouvellePetition.html">Nouvelle pétition</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Connexion google ici</a>
+					</li>
+				</ul>
+			</nav>
+			<ul class="nav justify-content-center marge-haute-moyenne">
+				<li class="nav-item">
+					<h3><a class="nav-link-noir marge-droite active-underline" href="index.html">Les nouveautés</a></h3>
+				</li>
+				<h3>|</h3>
+				<li class="nav-item">
+					<h3><a class="nav-link-noir marge-gauche pas-souligne" href="top100.html">Top 100</a></h3>
+				</li>
+			</ul>
+
+			<section id="main" class="marge-gauche">
+				<div class="row row-cols-1 row-cols-lg-4 align-items-stretch">
+					<div ng-repeat="petition in affPetCtrl.listePetitions | orderBy : 'dateCrea'">
+						<div class="col-md-4 mt-3">
+							<div class="card" style="width: 18rem;">
+								<img src="{{petition.image}}" class="card-img-top" alt="">
+								<div class="card-body">
+									<h5 class="card-title">{{petition.titre}}</h5>
+									<p class="card-text">{{petition.description}}</p>
+									<p class="card-text">nombre de signature : {{petition.nbSignature}} sur
+										{{petition.objectif}}</p>
+									<small class="card-text">créée par {{petition.auteur}}, le
+										{{petition.dateCrea}}</small></br>
+									<a ng-click="affPetCtrl.signer(petition.id,'user')" class="btn btn-primary mt-1">Signer</a>
+								</div>
+							</div>
+						</div>
+					</div>
+			</section>
+
+			<!--
+			<section id="main">
+				<ul id="todo-list">-->
+			<!-- Si la tâche est finie appliquer la class 'completed' sur li -->
+			<!--<li ng-repeat="tache in todoCtrl.todos track by $index" ng-class="{completed: tache.completed}">
+				<div class="view">
+					<label for="{{ 'task_' + $index }}">{{ tache.libelle | uppercase }} </label>
+					<label for="{{ 'task_' + $index }}">{{ tache.priorite }} </label>
+					<label for="{{ 'task_' + $index }}">{{ tache.echeance }} </label>
+					<label for="{{ 'task_' + $index }}">{{ tache.dateEcheance | date:'yyyy-MM-dd'}} </label>-->
+			<!-- Switch pour passer la tâche au statut finie -->
+			<!--<input id="{{ 'task_' + $index }}" type="checkbox" class="toggle" ng-model="tache.completed" />-->
+			<!-- Bouton permettant de supprimer une tâche -->
+			<!--<button class="destroy" ng-click="todoCtrl.destroy(tache)"> supprimer</button>
+				</div>
+			</li>
+			</ul>
+	</section> -->
+
+		</header>
+	</section>
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/moment/moment.js"></script>
+	<script src="AffichePetitionsController.js"></script>
+</body>
+
+</html>

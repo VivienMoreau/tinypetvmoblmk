@@ -1,97 +1,90 @@
 <!DOCTYPE html>
-<html ng-app="petApp">
-
-<head lang="en">
-	<meta charset="UTF-8">
-	<link rel="stylesheet" href="style.css" />
-	<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-	<title>TinyPet</title>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+<meta http-equiv="content-type"
+	content="application/xhtml+xml; charset=UTF-8" />
+<title>Hello App Engine</title>
 </head>
 
 <body>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
-		crossorigin="anonymous"></script>
+	<h1>Web and Cloud</h1>
 
-	<section id="todoapp" ng-controller="affPetController as affPetCtrl">
-		<header id="header">
+Be sure you loaded this page with "https://"
 
-			<nav class="navbar-fixed navbar-dark bg-dark">
-				<a class="navbar-brand center" href="index.html">
-					<img src="logo.png" height="150" width="150" alt="" />
-				</a>
-				<ul class="nav nav-tabs">
-					<li class="nav-item">
-						<a class="nav-link active" href="index.html">Parcourir les pétitions</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" ng-disabled="PasCo" href="mesPetitions.html">Mes pétitions</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" ng-disabled="PasCo" href="nouvellePetition.html">Nouvelle pétition</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Connexion google ici</a>
-					</li>
-				</ul>
-			</nav>
-			<ul class="nav justify-content-center marge-haute-moyenne">
-				<li class="nav-item">
-					<h3><a class="nav-link-noir marge-droite active-underline" href="index.html">Les nouveautés</a></h3>
-				</li>
-				<h3>|</h3>
-				<li class="nav-item">
-					<h3><a class="nav-link-noir marge-gauche pas-souligne" href="top100.html">Top 100</a></h3>
-				</li>
-			</ul>
 
-			<section id="main" class="marge-gauche">
-				<div class="row row-cols-1 row-cols-lg-4 align-items-stretch">
-					<div ng-repeat="petition in affPetCtrl.listePetitions | orderBy : 'dateCrea'">
-						<div class="col-md-4 mt-3">
-							<div class="card" style="width: 18rem;">
-								<img src="{{petition.image}}" class="card-img-top" alt="">
-								<div class="card-body">
-									<h5 class="card-title">{{petition.titre}}</h5>
-									<p class="card-text">{{petition.description}}</p>
-									<p class="card-text">nombre de signature : {{petition.nbSignature}} sur
-										{{petition.objectif}}</p>
-									<small class="card-text">créée par {{petition.auteur}}, le
-										{{petition.dateCrea}}</small></br>
-									<a ng-click="affPetCtrl.signer(petition.id,'user')" class="btn btn-primary mt-1">Signer</a>
-								</div>
-							</div>
-						</div>
-					</div>
-			</section>
+<h2>Tiny Pet</h2>
+<li><a href="/index5.html">Acceuil Web App</a>
 
-			<!--
-			<section id="main">
-				<ul id="todo-list">-->
-			<!-- Si la tâche est finie appliquer la class 'completed' sur li -->
-			<!--<li ng-repeat="tache in todoCtrl.todos track by $index" ng-class="{completed: tache.completed}">
-				<div class="view">
-					<label for="{{ 'task_' + $index }}">{{ tache.libelle | uppercase }} </label>
-					<label for="{{ 'task_' + $index }}">{{ tache.priorite }} </label>
-					<label for="{{ 'task_' + $index }}">{{ tache.echeance }} </label>
-					<label for="{{ 'task_' + $index }}">{{ tache.dateEcheance | date:'yyyy-MM-dd'}} </label>-->
-			<!-- Switch pour passer la tâche au statut finie -->
-			<!--<input id="{{ 'task_' + $index }}" type="checkbox" class="toggle" ng-model="tache.completed" />-->
-			<!-- Bouton permettant de supprimer une tâche -->
-			<!--<button class="destroy" ng-click="todoCtrl.destroy(tache)"> supprimer</button>
-				</div>
-			</li>
-			</ul>
-	</section> -->
+<h2>Config</h2>
+	<li><a href="/petitionInit">Initialisation des petitions ()</a>
+	<li><a href="/petitionRemoveAll">Suppression des donnees</a>
 
-		</header>
-	</section>
-	<script src="bower_components/jquery/dist/jquery.min.js"></script>
-	<script src="bower_components/angular/angular.js"></script>
-	<script src="bower_components/moment/moment.js"></script>
-	<script src="AffichePetitionsController.js"></script>
+<h2>Requetes</h2>
+	<li><a href="/petitionSigned">Petition signees par id0_4</a>
+	<li><a href="/top100Petition">Top 100 petitions signés</a>
+	
+<h2>Api</h2>
+	<li><a href="/_ah/api/myApi/v1/petition/signed/top100">top 100 petitions (triées par date et nombre de votant)</a>
+	<li><a href="/_ah/api/myApi/v1/petition/signed/top10/{last}">top 10 petitions signé + pagination</a>
+	<li><a href="/_ah/api/myApi/v1/petition/news/top10/{last}">top 10 petitions recentes + pagination</a>
+	<li><a href="/_ah/api/myApi/v1/petition/objectif-signataire/{petitionID}/{objectif}">Update objectif petition</a>
+	<li><a href="/_ah/api/myApi/v1/petition/info/{petitionID}">info Petition</a>
+	<li><a href="/_ah/api/myApi/v1/petition/add">Ajouter Petition</a>
+	<li><a href="/_ah/api/myApi/v1/petition/update">Modifier Petition</a>
+	<li><a href="/_ah/api/myApi/v1/petition/delete/{petitionID}">delete Petition</a>
+	<li><a href="/_ah/api/myApi/v1/signature/add/{petitionID}/{userID}">add Signature</a>
+	<li><a href="/_ah/api/myApi/v1/signature/delete/{petitionID}/{userID}">delete Signature</a>
+	<li><a href="/_ah/api/myApi/v1/petition/created/{userID}/{last}">petitions crées</a>
+	<li><a href="/_ah/api/myApi/v1/petition/signed/{userID}/{last}">petitions signées</a>
+	<li><a href="/_ah/api/myApi/v1/search/tag/{tag}/{last}">Search by tag</a>
+	<li><a href="/_ah/api/myApi/v1/search/titre/{titre}/{last}">Search by titre</a>
+
+<h2>Check if it works</h2>
+	<li><a href='/hello'>The servlet Hello world</a>
+	<li><a href='/index5.html'>TinyPet</a>
+
+<h2>Check login Google</h2>	
+	<li><a href="https://developers.google.com/identity/sign-in/web/sign-in#before_you_begin">see docs</a>
+	<li><a href='/userapi'>Login with Google (servlet)</a>
+	<li><a href='/glogin.html'>Login with Google (javascript)</a>
+	
+	
+<h2>Simple Javascript to call Rest Interface</h2>
+	<li><a href='/_ah/api/myApi/v1/topscores'>REST Call topscores</a>
+	<li><a href='/index3.html'>Scores with Mithril</a>
+	<li><a href='/index2.html'>Scores with React</a>
+
+<h2>Understanding contention with counters</h2>
+	<li><a href='/count'>Counter no transaction</a>
+	<li><a href='/counttr'>Counter with transactions</a>
+	<li><a href='/countsh'>Sharded Counter with transactions</a>
+
+
+<h2>Data Queries for managing Friends</h2>	
+	<li><a href='/friends'>Populate the Friend table (long)</a>
+	<li><a href='/query'>Query the Friend table</a>
+	
+<h2>Data Queries for managing Posts</h2>	
+	<li><a href='/prefixclean'>clean post data (long)</a>
+	<li><a href='/prefix'>install post data (long)</a>
+	<li><a href='/prefixquery'>Raw queries on post data</a>
+    <li><a href='/post.html'>Unsecure MyPost</a>
+    <li><a href='/glogin-mithril.html'>Secure MyPost</a>
+	<li><a href='/MsgIndex'>Msg - MsgIndex - Key/Parent Key</a>
+	
+<h2>Data Queries for managing Petitions</h2>	
+	<li><a href='/petition'>install petition like data (long)</a>
+	<li><a href='/pquery'>query petition data</a>
+			
+
+<h1>Fetch scores below:</h1>
+
+
+		<p id="toto"></p> <script>
+    const url = "_ah/api/myApi/v1/topscores"
+    fetch(url)
+    .then(response => response.text())
+    .then(data => document.getElementById('toto').innerHTML = data)
+  </script>
 </body>
-
 </html>
