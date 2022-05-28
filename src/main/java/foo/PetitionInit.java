@@ -50,7 +50,7 @@ public class PetitionInit extends HttpServlet {
 		ArrayList<String> banquePrenom = new ArrayList<>(List.of("Jean", "Emenline", "Antoine", "Pascal", "Christophe", "Michel", "Luffy", "Roger"));
 		ArrayList<String> banqueNom = new ArrayList<>(List.of("Dupuis", "Dupont", "Dubois", "Michel", "Aubert", "Poulain", "Molli", "Andrivot"));
 		ArrayList<String> banqueTheme = new ArrayList<>(List.of("Guerre", "Enfance", "Ecologie", "Politique", "Divers"));
-		
+		ArrayList<String> userCree = new ArrayList<>();
 		// Create users
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 4; j++) {
@@ -61,11 +61,11 @@ public class PetitionInit extends HttpServlet {
 				String prenom = banquePrenom.get(indexPrenom);
 				//String userId = prenom + "(" +i+")"+"."+nom+"("+j+")";
 				String userId = prenom +""+ i +""+ nom +""+ j;
+				userCree.add(userId);
 				Entity e = new Entity("User", userId);
 				e.setProperty("nom", nom );
 				e.setProperty("prenom", prenom );
 				e.setProperty("email", prenom + "." + nom);
-				
 				/*
 				String userId= i + "" +j;
 				Entity e = new Entity("User", userId);
@@ -120,7 +120,9 @@ public class PetitionInit extends HttpServlet {
 					int nbMaxSignataire = r.nextInt(400);
 					int nbSignataire = 0;
 					while (nbSignataire < nbMaxSignataire) {
-						id_user = r.nextInt(50) + "" + r.nextInt(10);
+						int indexUser = (int)(Math.random()*userCree.size());
+						//id_user = r.nextInt(50) + "" + r.nextInt(10);
+						id_user = userCree.get(indexUser);
 						String s_date= RandomDate.randDate();
 						try {
 							date_formated = Long.MAX_VALUE-(new SimpleDateFormat("yyyy-MM-dd").parse(s_date)).getTime();
