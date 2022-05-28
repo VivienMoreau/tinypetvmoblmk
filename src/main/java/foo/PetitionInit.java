@@ -94,7 +94,7 @@ public class PetitionInit extends HttpServlet {
 					p.setProperty("update_at", dateValue);
 					p.setProperty("proprietaire",  id_user);
 
-					int nbMaxSignataire = r.nextInt(50);
+					int nbMaxSignataire = (int)(Math.random()*30);
 					int nbSignataire = 0;
 					while (nbSignataire < nbMaxSignataire) {
 						int indexSignataire = (int)(Math.random()*userCree.size());
@@ -119,7 +119,10 @@ public class PetitionInit extends HttpServlet {
 					
 					
 					p.setProperty("nbSignataire", nbSignataire);
-					p.setProperty("objectifSignataire", r.nextInt(500)*100);
+					int objectif = (int)(Math.random()*90);
+					objectif = objectif + 50;
+					p.setProperty("objectifSignataire", objectif );
+					//p.setProperty("objectifSignataire", r.nextInt(500)*100);
 					// Create tag
 					HashSet<String> listTag = new HashSet<String>();
 					
