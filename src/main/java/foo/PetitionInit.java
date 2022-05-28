@@ -67,7 +67,7 @@ public class PetitionInit extends HttpServlet {
 			datastore.put(e);
 			response.getWriter().print("<li> created user: " + e.getKey() + "<br>");
 		}
-
+		/*
 		for (int j = 0; j < 20; j++) {
 			String dateValue = RandomDate.randDate();
 					long date_formated = 0;
@@ -111,9 +111,7 @@ public class PetitionInit extends HttpServlet {
 						datastore.put(s);
 						nbSignataire++;
 						response.getWriter().print("<li> signature created: " + id_signataire + "<br>");
-						
 					}
-					
 					
 					p.setProperty("nbSignataire", nbSignataire);
 					int objectif = (int)(Math.random()*20);
@@ -131,13 +129,9 @@ public class PetitionInit extends HttpServlet {
 					}
 					
 					p.setProperty("tag", listTag);
-					
 					datastore.put(p);
 					response.getWriter().print("<li> created petition: " + p.getKey() + "<br>");
-
-		}
-
-
+		}*/
 
 		/*
 		for (int i = 0; i < 30; i++) {
