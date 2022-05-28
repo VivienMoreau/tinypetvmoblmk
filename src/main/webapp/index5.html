@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>TinyPet</title>
 <meta name="google-signin-client_id" content="527621972350-qlpn957kak51r0subapta5r36h5t3f6e.apps.googleusercontent.com">
+<meta name="google-signin-plugin_name" content="stop bugging me">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!--<link href="style.css" rel="stylesheet" media="all" type="text/css"> -->
@@ -282,7 +283,7 @@ function scrollToTop() {
 	//window.scrollTo({top: 0, behavior: 'smooth'});
 	window.scrollTo({top: 0});
 	}
-
+/*
 	function onSignIn(pseudo) {
 	  userConnecter.id = pseudo;
 	  userConnecter.prenom = pseudo;
@@ -294,8 +295,32 @@ function scrollToTop() {
 		userConnecter.prenom = "";
 		document.getElementById("login_google").classList.remove('hide');
 		document.getElementById("logout_google").classList.add('hide');
+	}*/
+	function onSignIn(googleUser) {
+	  var profile = googleUser.getBasicProfile();
+	  userConnecter.id =profile.getId();
+	  userConnecter.prenom = ""+profile.getGivenName();
+	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+	  console.log('nom complet: ' + profile.getName());
+	  console.log('prenom: ' + profile.getGivenName());
+	  document.getElementById("login_google").classList.add('hide');
+	  document.getElementById("logout_google").classList.remove('hide');
+	  //startNotification("Bienvenue, ");
+	  console.log(userConnecter);B
+	  //console.log('Image URL: ' + profile.getImageUrl());
+	  //console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 	}
-
+	function signOut() {
+	var auth2 = gapi.auth2.getAuthInstance();
+	auth2.signOut().then(function () {
+		userConnecter.id = null;
+		userConnecter.prenom = "";
+		document.getElementById("login_google").classList.remove('hide');
+		document.getElementById("logout_google").classList.add('hide');
+		//startNotification('Vous êtes deconnecté',"is-primary","notification");
+	// console.log('Vous êtes deconnecté');
+	});
+	}
 
 /*
 function onSignIn(googleUser) {
@@ -1230,7 +1255,11 @@ var Header = {
 						            	m(m.route.Link, {href: "/SearchPetition",onclick: function(e) {
 							            	currentURL = '/SearchPetition';
 							            }, "class":"button is-primary" }, m("i", {"class":"fas fa-search"})),
+										/*
 						                m("div", {"id":"login_google",class: userConnecter.id!=null?"button is-light hide":"button is-light",onclick: function(e){onSignIn("banane");}}, m("strong","Se connecter")),
+						                m("a", {"id":"logout_google",class: userConnecter.id==null?"button is-light hide":"button is-light",onclick: function(e) {
+											*/
+										m("div", {"id":"login_google","class":"g-signin2","data-onsuccess":"onSignIn"}),
 						                m("a", {"id":"logout_google",class: userConnecter.id==null?"button is-light hide":"button is-light",onclick: function(e) {
 						                	signOut();
 							            }}, 
