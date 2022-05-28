@@ -44,16 +44,17 @@ public class PetitionInit extends HttpServlet {
 
 		Random r = new Random();
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-
+		/*
 		ArrayList<String> banqueTitre = new ArrayList<>(List.of("Sauvons les tortues", "Protéger les enfants migrants isolés", "Stopper la maladie de Charcot et les autres maladies neurodégénératives", "Pour la libération d'Olivier Dbois, seul otage françaus au Monde depuis le 8 Avril 2021", "Un référendum pour l'hôpital public !", "Pour la liberté d'informer sur l'agroalimentaire en Bretagne et ailleurs", "Soutien à Vincent, supprimer l'amende"));
 		ArrayList<String> banqueDescription = new ArrayList<>(List.of("C'est honteux", "Avec vous tout est possible", "il faut cesser cela", "faites une bonne action, signez", "one two three Viva l'Algérie", "nous garantissons un anonymat strict", "ne pas signer, c'est cautionner."));
 		ArrayList<String> banquePrenom = new ArrayList<>(List.of("Jean", "Emenline", "Antoine", "Pascal", "Christophe", "Michel", "Luffy", "Roger"));
 		ArrayList<String> banqueNom = new ArrayList<>(List.of("Dupuis", "Dupont", "Dubois", "Michel", "Aubert", "Poulain", "Molli", "Andrivot"));
 		ArrayList<String> banqueTheme = new ArrayList<>(List.of("Guerre", "Enfance", "Ecologie", "Politique", "Divers"));
-
+		*/
 		// Create users
 		for (int i = 0; i < 30; i++) {
 			for (int j = 0; j < 10; j++) {
+				/*
 				int indexNom = (int)(Math.random()*banqueNom.size());
 				int indexPrenom = (int)(Math.random()*banquePrenom.size());
 				String nom = banqueNom.get(indexNom);
@@ -63,6 +64,13 @@ public class PetitionInit extends HttpServlet {
 				e.setProperty("nom", nom );
 				e.setProperty("prenom", prenom );
 				e.setProperty("email", prenom + "." + nom);
+				*/
+				String userId= i + "" +j;
+				Entity e = new Entity("User", userId);
+				e.setProperty("nom", "Mon nom est " + j);
+				e.setProperty("prenom", "Mon prénom est " + j);
+				e.setProperty("email", "Mon adresse mail est " + j);
+
 				datastore.put(e);
 				response.getWriter().print("<li> created user: " + e.getKey() + "<br>");
 				
@@ -78,6 +86,7 @@ public class PetitionInit extends HttpServlet {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+					/*
 					String petitionId=  date_formated + ":" + userId + ":" + k;
 					int indexTheme = (int)(Math.random()*banqueTheme.size());
 					int indexTitre = (int)(Math.random()*banqueTitre.size());
@@ -89,6 +98,15 @@ public class PetitionInit extends HttpServlet {
 					p.setProperty("theme", Theme);
 					p.setProperty("titre", Titre);
 					p.setProperty("description", Description);
+					p.setProperty("date", dateValue);
+					p.setProperty("update_at", dateValue);
+					p.setProperty("proprietaire",  userId);
+					*/
+					String petitionId=  date_formated + ":" + userId + ":" + k;
+					Entity p = new Entity("Petition", petitionId);
+					p.setProperty("theme", "Le thème est " + j);
+					p.setProperty("titre", "Le titre est " + j);
+					p.setProperty("description", "La description est " + j);
 					p.setProperty("date", dateValue);
 					p.setProperty("update_at", dateValue);
 					p.setProperty("proprietaire",  userId);
