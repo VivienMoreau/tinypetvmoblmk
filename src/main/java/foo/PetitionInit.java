@@ -38,6 +38,7 @@ public class PetitionInit extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
+		String id_user, name_tag;
 		response.setContentType("text/html");
 		response.setCharacterEncoding("UTF-8");
 
@@ -136,14 +137,11 @@ public class PetitionInit extends HttpServlet {
 		
 		for (int i = 0; i < 30; i++) {
 			for (int j = 0; j < 10; j++) {
-				
 				String userId= i + "" +j;
 				Entity e = new Entity("User", userId);
 				e.setProperty("nom", "Mon nom est " + j);
 				e.setProperty("prenom", "Mon prénom est " + j);
 				e.setProperty("email", "Mon adresse mail est " + j);
-				
-				
 				datastore.put(e);
 				response.getWriter().print("<li> created user: " + e.getKey() + "<br>");
 				
@@ -159,8 +157,6 @@ public class PetitionInit extends HttpServlet {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					
-					
 					String petitionId=  date_formated + ":" + userId + ":" + k;
 					Entity p = new Entity("Petition", petitionId);
 					p.setProperty("theme", "Le thème est " + j);
@@ -171,11 +167,27 @@ public class PetitionInit extends HttpServlet {
 					p.setProperty("proprietaire",  userId);
 					
 					
+					// Create signature
+					/*
+					HashSet<String> listSignataire = new HashSet<String>();
 					
-					int nbMaxSignataire = r.nextInt(50);
+					int nbMaxSignataire = r.nextInt(500);
+					int nbSignataire = 0;
+					while (listSignataire.size() < nbMaxSignataire) {
+						id_user = r.nextInt(50) + "_" + r.nextInt(10);
+						if (!listSignataire.contains(id_user)) {
+						listSignataire.add(id_user);
+						nbSignataire++;
+						response.getWriter().print("<li> signature created: " + id_user + "<br>");
+						}
+					}
+					
+					p.setProperty("signataire", listSignataire);
+					*/
+					int nbMaxSignataire = r.nextInt(400);
 					int nbSignataire = 0;
 					while (nbSignataire < nbMaxSignataire) {
-						String id_user = r.nextInt(50) + "" + r.nextInt(10);
+						id_user = r.nextInt(50) + "" + r.nextInt(10);
 						String s_date= RandomDate.randDate();
 						try {
 							date_formated = Long.MAX_VALUE-(new SimpleDateFormat("yyyy-MM-dd").parse(s_date)).getTime();
@@ -183,7 +195,7 @@ public class PetitionInit extends HttpServlet {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-						Entity s = new Entity("Signature", id_user+":"+date_formated+":"+petitionId);
+						Entity s = new Entity("Signature", userId+":"+date_formated+":"+petitionId);
 						s.setProperty("petition",  petitionId);
 						s.setProperty("proprietaire",  id_user);
 						s.setProperty("date",  s_date);	
@@ -201,7 +213,7 @@ public class PetitionInit extends HttpServlet {
 					
 					int nbMaxTag = r.nextInt(20);
 					while (listTag.size() < nbMaxTag) {
-						String name_tag = "name_tag" + r.nextInt(50) + "" + r.nextInt(10);
+						name_tag = "name_tag" + r.nextInt(50) + "" + r.nextInt(10);
 						if (!listTag.contains(name_tag)) {
 						listTag.add(name_tag);
 						response.getWriter().print("<li> tag created: " + name_tag + "<br>");
