@@ -37,20 +37,20 @@ public class PetitionInit extends HttpServlet {
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		
-		String name_tag;
+
 		response.setContentType("text/html");
 		response.setCharacterEncoding("UTF-8");
 
 		Random r = new Random();
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-		/*
-		ArrayList<String> banqueTitre = new ArrayList<>(List.of("Sauvons les tortues", "Protéger les enfants migrants isolés", "Stopper la maladie de Charcot et les autres maladies neurodégénératives", "Pour la libération d'Olivier Dbois, seul otage françaus au Monde depuis le 8 Avril 2021", "Un référendum pour l'hôpital public !", "Pour la liberté d'informer sur l'agroalimentaire en Bretagne et ailleurs", "Soutien à Vincent, supprimer l'amende"));
-		ArrayList<String> banqueDescription = new ArrayList<>(List.of("C'est honteux", "Avec vous tout est possible", "il faut cesser cela", "faites une bonne action, signez", "one two three Viva l'Algérie", "nous garantissons un anonymat strict", "ne pas signer, c'est cautionner."));
-		ArrayList<String> banquePrenom = new ArrayList<>(List.of("Jean", "Emenline", "Antoine", "Pascal", "Christophe", "Michel", "Luffy", "Roger"));
-		ArrayList<String> banqueNom = new ArrayList<>(List.of("Dupuis", "Dupont", "Dubois", "Michel", "Aubert", "Poulain", "Molli", "Andrivot"));
-		ArrayList<String> banqueTheme = new ArrayList<>(List.of("Guerre", "Enfance", "Ecologie", "Politique", "Divers"));
-		ArrayList<String> userCree = new ArrayList<>();
+		
+		ArrayList<String> banqueTitre = new ArrayList<String>(List.of("Sauvons les tortues", "Protéger les enfants migrants isolés", "Stopper la maladie de Charcot et les autres maladies neurodégénératives", "Pour la libération d'Olivier Dbois, seul otage françaus au Monde depuis le 8 Avril 2021", "Un référendum pour l'hôpital public !", "Pour la liberté d'informer sur l'agroalimentaire en Bretagne et ailleurs", "Soutien à Vincent, supprimer l'amende"));
+		ArrayList<String> banqueDescription = new ArrayList<String>(List.of("C'est honteux", "Avec vous tout est possible", "il faut cesser cela", "faites une bonne action, signez", "one two three Viva l'Algérie", "nous garantissons un anonymat strict", "ne pas signer, c'est cautionner."));
+		ArrayList<String> banquePrenom = new ArrayList<String>(List.of("Jean", "Emenline", "Antoine", "Pascal", "Christophe", "Michel", "Luffy", "Roger"));
+		ArrayList<String> banqueNom = new ArrayList<String>(List.of("Dupuis", "Dupont", "Dubois", "Michel", "Aubert", "Poulain", "Molli", "Andrivot"));
+		ArrayList<String> banqueTheme = new ArrayList<String>(List.of("Guerre", "Enfance", "Ecologie", "Politique", "Divers"));
+		ArrayList<String> banqueTag = new ArrayList<String>(List.of("balanceton", "meto", "paix", "guerre", "electionmissfrance"));
+		ArrayList<String> userCree = new ArrayList<String>();
 		// Create users
 
 		for (int i =0; i<100; i++){
@@ -124,9 +124,10 @@ public class PetitionInit extends HttpServlet {
 					HashSet<String> listTag = new HashSet<String>();
 					
 					//int nbMaxTag = r.nextInt(20);
-					int nbMaxTag = (int)(Math.random()*10);
+					int nbMaxTag = (int)(Math.random()*5);
 					for (int i =0; i < nbMaxTag; i++){
-						name_tag = "name_tag" + r.nextInt(50) + "" + r.nextInt(10);
+						int indexTag = (int)(Math.random()*banqueTag.size());
+						String name_tag = banqueTag.get(indexTag);
 						if (!listTag.contains(name_tag)) {
 							listTag.add(name_tag);
 							response.getWriter().print("<li> tag created: " + name_tag + "<br>");
@@ -140,11 +141,9 @@ public class PetitionInit extends HttpServlet {
 
 		}
 
-*/
 
 
-
-		
+		/*
 		for (int i = 0; i < 30; i++) {
 			for (int j = 0; j < 10; j++) {
 				
@@ -212,7 +211,7 @@ public class PetitionInit extends HttpServlet {
 					
 					int nbMaxTag = r.nextInt(20);
 					while (listTag.size() < nbMaxTag) {
-						name_tag = "name_tag" + r.nextInt(50) + "" + r.nextInt(10);
+						String name_tag = "name_tag" + r.nextInt(50) + "" + r.nextInt(10);
 						if (!listTag.contains(name_tag)) {
 						listTag.add(name_tag);
 						response.getWriter().print("<li> tag created: " + name_tag + "<br>");
@@ -226,6 +225,6 @@ public class PetitionInit extends HttpServlet {
 						
 				}
 			}
-		}
+		}*/
 	}
 }
