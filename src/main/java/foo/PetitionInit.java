@@ -38,7 +38,7 @@ public class PetitionInit extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-		String id_user, name_tag;
+		String name_tag;
 		response.setContentType("text/html");
 		response.setCharacterEncoding("UTF-8");
 
@@ -52,8 +52,100 @@ public class PetitionInit extends HttpServlet {
 		ArrayList<String> banqueTheme = new ArrayList<>(List.of("Guerre", "Enfance", "Ecologie", "Politique", "Divers"));
 		ArrayList<String> userCree = new ArrayList<>();
 		// Create users
-		for (int i = 0; i < 5; i++) {
-			for (int j = 0; j < 4; j++) {
+
+		for (int i =0; i<100; i++){
+			int indexNom = (int)(Math.random()*banqueNom.size());
+			int indexPrenom = (int)(Math.random()*banquePrenom.size());
+			String nom = banqueNom.get(indexNom);
+			String prenom = banquePrenom.get(indexPrenom);
+			String userId = prenom +""+ i +""+ nom;
+			userCree.add(userId);
+			Entity e = new Entity("User", userId);
+			e.setProperty("nom", nom );
+			e.setProperty("prenom", prenom );
+			e.setProperty("email", prenom + "." + nom);
+			datastore.put(e);
+			response.getWriter().print("<li> created user: " + e.getKey() + "<br>");
+		}
+
+		for (int j = 0; j < 300; j++) {
+			String dateValue = RandomDate.randDate();
+					long date_formated = 0;
+					try {
+						date_formated = Long.MAX_VALUE-(new SimpleDateFormat("yyyy-MM-dd").parse(dateValue)).getTime();
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					int indexUser = (int)(Math.random()*userCree.size());
+					String id_user = userCree.get(indexUser);
+					String petitionId=  date_formated + ":" + id_user + ":" + j;
+					int indexTheme = (int)(Math.random()*banqueTheme.size());
+					int indexTitre = (int)(Math.random()*banqueTitre.size());
+					int indexDescription = (int)(Math.random()*banqueDescription.size());
+					String theme = banqueTheme.get(indexTheme);
+					String titre = banqueTitre.get(indexTitre);
+					String description = banqueDescription.get(indexDescription);
+					Entity p = new Entity("Petition", petitionId);
+					p.setProperty("theme", theme);
+					p.setProperty("titre", titre);
+					p.setProperty("description", description);
+					p.setProperty("date", dateValue);
+					p.setProperty("update_at", dateValue);
+					p.setProperty("proprietaire",  id_user);
+
+					int nbMaxSignataire = r.nextInt(50);
+					int nbSignataire = 0;
+					while (nbSignataire < nbMaxSignataire) {
+						int indexSignataire = (int)(Math.random()*userCree.size());
+						//String id_user = r.nextInt(50) + "" + r.nextInt(10);
+						String id_signataire = userCree.get(indexSignataire);
+						String s_date= RandomDate.randDate();
+						try {
+							date_formated = Long.MAX_VALUE-(new SimpleDateFormat("yyyy-MM-dd").parse(s_date)).getTime();
+						} catch (ParseException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						Entity s = new Entity("Signature", id_signataire+":"+date_formated+":"+petitionId);
+						s.setProperty("petition",  petitionId);
+						s.setProperty("proprietaire",  id_signataire);
+						s.setProperty("date",  s_date);	
+						datastore.put(s);
+						nbSignataire++;
+						response.getWriter().print("<li> signature created: " + id_signataire + "<br>");
+						
+					}
+					
+					
+					p.setProperty("nbSignataire", nbSignataire);
+					p.setProperty("objectifSignataire", r.nextInt(500)*100);
+					// Create tag
+					HashSet<String> listTag = new HashSet<String>();
+					
+					int nbMaxTag = r.nextInt(20);
+					while (listTag.size() < nbMaxTag) {
+						name_tag = "name_tag" + r.nextInt(50) + "" + r.nextInt(10);
+						if (!listTag.contains(name_tag)) {
+						listTag.add(name_tag);
+						response.getWriter().print("<li> tag created: " + name_tag + "<br>");
+						}
+					}
+					
+					p.setProperty("tag", listTag);
+					
+					datastore.put(p);
+					response.getWriter().print("<li> created petition: " + p.getKey() + "<br>");
+
+		}
+
+
+
+
+
+		/*
+		for (int i = 0; i < 30; i++) {
+			for (int j = 0; j < 10; j++) {
 				
 				int indexNom = (int)(Math.random()*banqueNom.size());
 				int indexPrenom = (int)(Math.random()*banquePrenom.size());
@@ -66,13 +158,13 @@ public class PetitionInit extends HttpServlet {
 				e.setProperty("nom", nom );
 				e.setProperty("prenom", prenom );
 				e.setProperty("email", prenom + "." + nom);
-				/*
+				
 				String userId= i + "" +j;
 				Entity e = new Entity("User", userId);
 				e.setProperty("nom", "Mon nom est " + j);
 				e.setProperty("prenom", "Mon prénom est " + j);
 				e.setProperty("email", "Mon adresse mail est " + j);
-				*/
+				
 				
 				datastore.put(e);
 				response.getWriter().print("<li> created user: " + e.getKey() + "<br>");
@@ -105,7 +197,7 @@ public class PetitionInit extends HttpServlet {
 					p.setProperty("update_at", dateValue);
 					p.setProperty("proprietaire",  userId);
 					
-					/*
+					
 					String petitionId=  date_formated + ":" + userId + ":" + k;
 					Entity p = new Entity("Petition", petitionId);
 					p.setProperty("theme", "Le thème est " + j);
@@ -114,15 +206,15 @@ public class PetitionInit extends HttpServlet {
 					p.setProperty("date", dateValue);
 					p.setProperty("update_at", dateValue);
 					p.setProperty("proprietaire",  userId);
-					*/
 					
 					
-					int nbMaxSignataire = r.nextInt(400);
+					
+					int nbMaxSignataire = r.nextInt(50);
 					int nbSignataire = 0;
 					while (nbSignataire < nbMaxSignataire) {
 						int indexUser = (int)(Math.random()*userCree.size());
-						//id_user = r.nextInt(50) + "" + r.nextInt(10);
-						id_user = userCree.get(indexUser);
+						//String id_user = r.nextInt(50) + "" + r.nextInt(10);
+						String id_user = userCree.get(indexUser);
 						String s_date= RandomDate.randDate();
 						try {
 							date_formated = Long.MAX_VALUE-(new SimpleDateFormat("yyyy-MM-dd").parse(s_date)).getTime();
@@ -130,7 +222,7 @@ public class PetitionInit extends HttpServlet {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-						Entity s = new Entity("Signature", userId+":"+date_formated+":"+petitionId);
+						Entity s = new Entity("Signature", id_user+":"+date_formated+":"+petitionId);
 						s.setProperty("petition",  petitionId);
 						s.setProperty("proprietaire",  id_user);
 						s.setProperty("date",  s_date);	
@@ -162,6 +254,6 @@ public class PetitionInit extends HttpServlet {
 						
 				}
 			}
-		}
+		}*/
 	}
 }
