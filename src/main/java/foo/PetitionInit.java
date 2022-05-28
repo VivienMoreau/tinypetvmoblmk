@@ -43,7 +43,7 @@ public class PetitionInit extends HttpServlet {
 
 		Random r = new Random();
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-		
+		/*
 		ArrayList<String> banqueTitre = new ArrayList<String>(List.of("Sauvons les tortues", "Protéger les enfants migrants isolés", "Stopper la maladie de Charcot et les autres maladies neurodégénératives", "Pour la libération d'Olivier Dbois, seul otage françaus au Monde depuis le 8 Avril 2021", "Un référendum pour l'hôpital public !", "Pour la liberté d'informer sur l'agroalimentaire en Bretagne et ailleurs", "Soutien à Vincent, supprimer l'amende"));
 		ArrayList<String> banqueDescription = new ArrayList<String>(List.of("C'est honteux", "Avec vous tout est possible", "il faut cesser cela", "faites une bonne action, signez", "one two three Viva l'Algérie", "nous garantissons un anonymat strict", "ne pas signer, c'est cautionner."));
 		ArrayList<String> banquePrenom = new ArrayList<String>(List.of("Jean", "Emenline", "Antoine", "Pascal", "Christophe", "Michel", "Luffy", "Roger"));
@@ -67,7 +67,7 @@ public class PetitionInit extends HttpServlet {
 			datastore.put(e);
 			response.getWriter().print("<li> created user: " + e.getKey() + "<br>");
 		}
-		/*
+		
 		for (int j = 0; j < 20; j++) {
 			String dateValue = RandomDate.randDate();
 					long date_formated = 0;
