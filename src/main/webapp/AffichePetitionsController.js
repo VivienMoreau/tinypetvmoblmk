@@ -51,19 +51,7 @@
 		vm.signer = signer;
 
         //a récuperer depuis le back
-        vm.listePetitions = {
-			list: [],
-			loadList: function() {
-				return m.request({
-					method: "GET",
-					url: "_ah/api/myApi/v1/petitions/"
-				})
-				.then(function(result) {
-					vm.listPet = result.items
-					console.log("got:",result.items)
-				})
-			}
-		}/*[
+        vm.listePetitions = [
 			
             {titre:'titre3',description : 'description3',image:'https://img.fotocommunity.com/les-coquelicots-de-warlaing-727050f3-8719-40fc-a218-824a29733583.jpg?height=1080',objectif:'3',auteur:'moi',dateCrea:'03/03/2022',nbSignature:'3'},
             {titre:'titre2',description : 'description2',image:'https://www.referenseo.com/wp-content/uploads/2019/03/image-attractive-960x540.jpg',objectif:'2',auteur:'auteur2',dateCrea:'02/02/2022',nbSignature:'2'},
@@ -87,7 +75,7 @@
 					console.log("got:",result.items)
 				})
 			}
-		}*/
+		}
 
 		function signer(idPet, user) {
 			var dateSignature = moment().format('L');

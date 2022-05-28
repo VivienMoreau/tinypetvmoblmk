@@ -50,7 +50,7 @@ public class PetitionInit extends HttpServlet {
 		ArrayList<String> banquePrenom = new ArrayList<>(List.of("Jean", "Emenline", "Antoine", "Pascal", "Christophe", "Michel", "Luffy", "Roger"));
 		ArrayList<String> banqueNom = new ArrayList<>(List.of("Dupuis", "Dupont", "Dubois", "Michel", "Aubert", "Poulain", "Molli", "Andrivot"));
 		ArrayList<String> banqueTheme = new ArrayList<>(List.of("Guerre", "Enfance", "Ecologie", "Politique", "Divers"));
-		ArrayList<String> userCree = new ArrayList();
+		ArrayList<String> userCree = new ArrayList<>();
 		// Create users
 
 		for (int i =0; i<100; i++){
