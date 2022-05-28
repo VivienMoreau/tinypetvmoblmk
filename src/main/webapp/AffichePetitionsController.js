@@ -51,7 +51,8 @@
 		vm.signer = signer;
 
         //a récuperer depuis le back
-        vm.listePetitions = {
+        vm.listePetitions = 
+		/*{
 			list: [],
 			loadList: function() {
 				return m.request({
@@ -63,7 +64,11 @@
 					console.log("got:",result.items)
 				})
 			}
-		}
+		}*/
+			$resource('_ah/api/myApi/v1/petition/signed/top100',
+			{}, {
+			charge: {method: 'GET', params: {charge: true}}
+			});
 		/*[
 			
             {titre:'titre3',description : 'description3',image:'https://img.fotocommunity.com/les-coquelicots-de-warlaing-727050f3-8719-40fc-a218-824a29733583.jpg?height=1080',objectif:'3',auteur:'moi',dateCrea:'03/03/2022',nbSignature:'3'},
