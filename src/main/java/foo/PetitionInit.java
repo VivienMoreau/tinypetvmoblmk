@@ -63,18 +63,17 @@ public class PetitionInit extends HttpServlet {
 			Entity e = new Entity("User", userId);
 			e.setProperty("nom", nom );
 			e.setProperty("prenom", prenom );
-			e.setProperty("email", prenom + "." + nom + "@gmail.com");
+			e.setProperty("email", prenom + "-" + nom + i +"@gmail.com");
 			datastore.put(e);
 			response.getWriter().print("<li> created user: " + e.getKey() + "<br>");
 		}
 
-		for (int j = 0; j < 300; j++) {
+		for (int j = 0; j < 20; j++) {
 			String dateValue = RandomDate.randDate();
 					long date_formated = 0;
 					try {
 						date_formated = Long.MAX_VALUE-(new SimpleDateFormat("yyyy-MM-dd").parse(dateValue)).getTime();
 					} catch (ParseException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					int indexUser = (int)(Math.random()*userCree.size());
@@ -94,17 +93,15 @@ public class PetitionInit extends HttpServlet {
 					p.setProperty("update_at", dateValue);
 					p.setProperty("proprietaire",  id_user);
 
-					int nbMaxSignataire = (int)(Math.random()*30);
+					int nbMaxSignataire = (int)(Math.random()*5);
 					int nbSignataire = 0;
 					while (nbSignataire < nbMaxSignataire) {
 						int indexSignataire = (int)(Math.random()*userCree.size());
-						//String id_user = r.nextInt(50) + "" + r.nextInt(10);
 						String id_signataire = userCree.get(indexSignataire);
 						String s_date= RandomDate.randDate();
 						try {
 							date_formated = Long.MAX_VALUE-(new SimpleDateFormat("yyyy-MM-dd").parse(s_date)).getTime();
 						} catch (ParseException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 						Entity s = new Entity("Signature", id_signataire+":"+date_formated+":"+petitionId);
@@ -119,14 +116,10 @@ public class PetitionInit extends HttpServlet {
 					
 					
 					p.setProperty("nbSignataire", nbSignataire);
-					int objectif = (int)(Math.random()*90);
+					int objectif = (int)(Math.random()*20);
 					objectif = objectif + 50;
 					p.setProperty("objectifSignataire", objectif );
-					//p.setProperty("objectifSignataire", r.nextInt(500)*100);
-					// Create tag
 					HashSet<String> listTag = new HashSet<String>();
-					
-					//int nbMaxTag = r.nextInt(20);
 					int nbMaxTag = (int)(Math.random()*5);
 					for (int i =0; i < nbMaxTag; i++){
 						int indexTag = (int)(Math.random()*banqueTag.size());
