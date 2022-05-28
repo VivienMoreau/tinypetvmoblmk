@@ -50,7 +50,7 @@ public class PetitionInit extends HttpServlet {
 		ArrayList<String> banquePrenom = new ArrayList<>(List.of("Jean", "Emenline", "Antoine", "Pascal", "Christophe", "Michel", "Luffy", "Roger"));
 		ArrayList<String> banqueNom = new ArrayList<>(List.of("Dupuis", "Dupont", "Dubois", "Michel", "Aubert", "Poulain", "Molli", "Andrivot"));
 		ArrayList<String> banqueTheme = new ArrayList<>(List.of("Guerre", "Enfance", "Ecologie", "Politique", "Divers"));
-		ArrayList<String> userCree = new ArrayList<>();
+		ArrayList<String> userCree = new ArrayList();
 		// Create users
 
 		for (int i =0; i<100; i++){
@@ -63,7 +63,7 @@ public class PetitionInit extends HttpServlet {
 			Entity e = new Entity("User", userId);
 			e.setProperty("nom", nom );
 			e.setProperty("prenom", prenom );
-			e.setProperty("email", prenom + "." + nom);
+			e.setProperty("email", prenom + "." + nom + "@gmail.com");
 			datastore.put(e);
 			response.getWriter().print("<li> created user: " + e.getKey() + "<br>");
 		}
@@ -147,18 +147,6 @@ public class PetitionInit extends HttpServlet {
 		for (int i = 0; i < 30; i++) {
 			for (int j = 0; j < 10; j++) {
 				
-				int indexNom = (int)(Math.random()*banqueNom.size());
-				int indexPrenom = (int)(Math.random()*banquePrenom.size());
-				String nom = banqueNom.get(indexNom);
-				String prenom = banquePrenom.get(indexPrenom);
-				//String userId = prenom + "(" +i+")"+"."+nom+"("+j+")";
-				String userId = prenom +""+ i +""+ nom +""+ j;
-				userCree.add(userId);
-				Entity e = new Entity("User", userId);
-				e.setProperty("nom", nom );
-				e.setProperty("prenom", prenom );
-				e.setProperty("email", prenom + "." + nom);
-				
 				String userId= i + "" +j;
 				Entity e = new Entity("User", userId);
 				e.setProperty("nom", "Mon nom est " + j);
@@ -182,21 +170,6 @@ public class PetitionInit extends HttpServlet {
 						e1.printStackTrace();
 					}
 					
-					String petitionId=  date_formated + ":" + userId + ":" + k;
-					int indexTheme = (int)(Math.random()*banqueTheme.size());
-					int indexTitre = (int)(Math.random()*banqueTitre.size());
-					int indexDescription = (int)(Math.random()*banqueDescription.size());
-					String theme = banqueTheme.get(indexTheme);
-					String titre = banqueTitre.get(indexTitre);
-					String description = banqueDescription.get(indexDescription);
-					Entity p = new Entity("Petition", petitionId);
-					p.setProperty("theme", theme);
-					p.setProperty("titre", titre);
-					p.setProperty("description", description);
-					p.setProperty("date", dateValue);
-					p.setProperty("update_at", dateValue);
-					p.setProperty("proprietaire",  userId);
-					
 					
 					String petitionId=  date_formated + ":" + userId + ":" + k;
 					Entity p = new Entity("Petition", petitionId);
@@ -212,9 +185,7 @@ public class PetitionInit extends HttpServlet {
 					int nbMaxSignataire = r.nextInt(50);
 					int nbSignataire = 0;
 					while (nbSignataire < nbMaxSignataire) {
-						int indexUser = (int)(Math.random()*userCree.size());
-						//String id_user = r.nextInt(50) + "" + r.nextInt(10);
-						String id_user = userCree.get(indexUser);
+						String id_user = r.nextInt(50) + "" + r.nextInt(10);
 						String s_date= RandomDate.randDate();
 						try {
 							date_formated = Long.MAX_VALUE-(new SimpleDateFormat("yyyy-MM-dd").parse(s_date)).getTime();
