@@ -133,7 +133,7 @@ public class PetitionInit extends HttpServlet {
 					response.getWriter().print("<li> created petition: " + p.getKey() + "<br>");
 		}*/
 
-		/*
+		
 		for (int i = 0; i < 30; i++) {
 			for (int j = 0; j < 10; j++) {
 				
@@ -215,6 +215,6 @@ public class PetitionInit extends HttpServlet {
 						
 				}
 			}
-		}*/
+		}
 	}
 }
