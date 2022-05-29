@@ -59,5 +59,9 @@ Création Pétition
 <img src= "/screens/CréationPétition.png">
 Details Pétition
 <img src= "/screens/DetailsPetition.png">
+Au cas où le lien vers notre projet angularJS ne marche pas, voici à quoi ressemblait notre début de projet : 
+<img src= "/screens/AffichageAngular.png">
 <h2>Conclusion</h2>
 <br>
+Ce projet nous a permis de prendre conscience de la difficulté à développer une application web intégralement en se souciant des problèmes de performance. 
+Nous aurions apprécié trouver le temps de commencer plus tôt ce projet, en parallèle des cours afin de solliciter plus rapidement le professeur et de ne pas abandonner le projet que nous avions commencé en AngularJS. 
