@@ -23,7 +23,7 @@
       td, th,.subtitle {
          text-align: center!important}
       .cendre {
-         background: #f3f3f3;
+         background: #4a4a4a;
       }
       .p-30.cendre {
          min-height:500px;}
@@ -33,8 +33,8 @@
       .m-0{
          margin: 0px !important}
       .is-active a{
-         border-bottom-color: #00d1b2!important;
-         color: #00d1b2!important;
+         border-bottom-color: #d10000!important;
+         color: #d10000!important;
          font-weight: 500;}
       .p-30 {
          padding: 30px;
@@ -50,9 +50,9 @@
          margin: auto;
          width: 100%;
          height: 250px;
-         background: #adadad;}
+         background: #4a4a4a;}
       .link {
-         color: #00d1b2!important;
+         color: #d10000!important;
          font-weight: 500;
       }
       .truncate {
@@ -67,15 +67,15 @@
          padding: 22px;
       }
       a.navbar-item.is-active,a.navbar-item:hover,a.navbar-item:active{
-         background: #fafafa!important;
-         color: #00d1b2!important;
+         background: #4a4a4a!important;
+         color: #d10000!important;
       }
       .pagination {
          justify-content: center;
       }
       .tabs span{
          align-items: center;
-         color: #4a4a4a;
+         color: #ffffff;
          display: flex;
          justify-content: center;
          margin-bottom: -1px;
@@ -126,11 +126,11 @@
          position: fixed!important;
          z-index: 30;
          width: 640px;
-         background-color: #00d1b2!important;
+         background-color: #d10000!important;
          border-color: transparent;
          text-align:center!important}
       form header p {
-         color: #fff!important;
+         color: #4a4a4a!important;
       }
       form section {
          padding-top: 73px!important}
@@ -165,21 +165,30 @@
       .mt-8{
          margin-top:8px}
       .link.dark{
-         color:black!important}
+         color:rgb(255, 255, 255)!important}
       .search .control{
          padding-left: 165px;
          width: auto!important;}
       .search li span{
          margin:0!important;}
       .search li.is-active a{
-         background-color:  #00d1b2!important;
-         border-color:  #00d1b2!important;
+         background-color:  #d10000!important;
+         border-color:  #d10000!important;
       }
       .search li.is-active span{
-         color: #fff!important;
+         color: #4a4a4a!important;
          font-weight:500}
       .g-signin2{
          margin-bottom:10px}
+      .gris{
+         background-color: #4a4a4a;
+      }
+      .title {
+         color: #ffffff;
+      }
+      a{
+         color : #ffffff !important;
+      }
    </style>
 
 
@@ -190,7 +199,7 @@
 
 
 </head>
-<body class="has-navbar-fixed-top" id="body">
+<body class="has-navbar-fixed-top gris" id="body">
 
 
 <script>
@@ -1211,12 +1220,12 @@
       view : function(){
 
          return [m("script", {"src":"https://apis.google.com/js/platform.js","async":"async","defer":"defer"}),
-            m("nav", {"class":"navbar is-fixed-top box","role":"navigation","aria-label":"main navigation"},
+            m("nav", {"class":"navbar is-fixed-top box gris","role":"navigation","aria-label":"main navigation"},
                     [
                        m("div", {"class":"navbar-brand"},
                                [
                                   m("a", {"class":"","href":"#"},
-                                          m("img", {"src":"logo.png"})),
+                                          m("img", {"src":"logo.png", "heigt" : "80", "width" : "80"})),
                                   m("a", {"class":"navbar-burger","role":"button","aria-label":"menu","aria-expanded":"false","data-target":"navbarBasic"},
                                           [ m("span", {"aria-hidden":"true"}),m("span", {"aria-hidden":"true"}),m("span", {"aria-hidden":"true"})])
                                ]
@@ -1297,7 +1306,7 @@
                                   }},  "Les pétitions récentes")),
                                m("li", {class: currentURL == "/Top100Signed" ? "is-active" : ""}, m(m.route.Link, {href: "/top100Signed",onclick: function(e) {
                                      currentURL = '/Top100Signed';
-                                  }},  "Top pétitions signés"))
+                                  }},  "Top pétitions signées"))
 
                             ]
                     )
