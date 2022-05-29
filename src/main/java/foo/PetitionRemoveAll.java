@@ -58,5 +58,12 @@ public class PetitionRemoveAll extends HttpServlet {
 			datastore.delete(entity.getKey());			
 			response.getWriter().print("<li> deleting" + entity.getKey()+"<br>");
 		}
+		Query s = new Query("Signature");
+		PreparedQuery ps = datastore.prepare(s);
+		List<Entity> results = ps.asList(FetchOptions.Builder.withDefaults());
+		for (Entity entity : results) {
+			datastore.delete(entity.getKey());			
+			response.getWriter().print("<li> deleting" + entity.getKey()+"<br>");
+		}
 	}
 }
