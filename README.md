@@ -44,7 +44,7 @@ Il semblerait que le datastore ait beaucoup de mal à accueillir un push de donn
 <h2>Apercu du site de pétitions</h2>
 <br>
 Les pétition Récentes
-<img src= "/screens/LesPétitionsRécentes">
+<img src= "/screens/LesPétitionsRécentes.png">
 Les pétitions les plus signées
 
 Mes pétitions
