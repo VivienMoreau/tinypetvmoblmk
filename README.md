@@ -46,17 +46,16 @@ Il semblerait que le datastore ait beaucoup de mal à accueillir un push de donn
 Les pétition Récentes
 <img src= "/screens/LesPétitionsRécentes.png">
 Les pétitions les plus signées
-
+<img src= "/screens/LesPétitionsLesPlusSignées.png">
 Mes pétitions
-
+<img src= "/screens/PétitionsLancées.png">
 Mes signatures
-
+<img src= "/screens/PétitionsSignées.png">
 Recherche par Tag
-
+<img src= "/screens/RechercheParTag.png">
 Recherche par Titre
-
+<img src= "/screens/RechercheParTitre.png">
 Création Pétition
-
+<img src= "/screens/CréationPétition.png">
 Details Pétition
-
-!(/screens/LesPétitionsLesPlusSignées.png "San Juan Mountains")
+<img src= "/screens/DetailsPetition.png">
