@@ -35,8 +35,8 @@ Il semblerait que le datastore ait beaucoup de mal à accueillir un push de donn
 <br>
 <br>
 <h2>Fonctionnalités du projet</h2>
- * Création de pétitions
- * Affichage des pétitions lancées/signées
- * Parcourir les pétitions les plus récentes
- * Parcourir le top les pétitions signées
- * Rechercher les pétitions par titre ou tag
+ <ul><li>Création de pétitions</li>
+ <li>Affichage des pétitions lancées/signées</li>
+ <li>Parcourir les pétitions les plus récentes</li>
+ <li>Parcourir le top les pétitions signées</li>
+ <li>Rechercher les pétitions par titre ou tag</li></ul>
