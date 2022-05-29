@@ -40,3 +40,6 @@ Il semblerait que le datastore ait beaucoup de mal à accueillir un push de donn
  <li>Parcourir les pétitions les plus récentes</li>
  <li>Parcourir le top les pétitions signées</li>
  <li>Rechercher les pétitions par titre ou tag</li></ul>
+
+<h2>Apercu du site de pétitions</h2>
+

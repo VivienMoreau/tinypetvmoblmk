@@ -186,6 +186,9 @@
       .title {
          color: #ffffff;
       }
+      .titlePetition{
+         color:rgb(0, 0, 0)!important;
+      }
       a{
          color : #ffffff !important;
       }
@@ -1445,7 +1448,7 @@
                     m("div", {"class":"card-content"},
                             [
                                m("img", {"src":validURL(item.properties.img_url)?item.properties.img_url:"https://www.emploilr.com/images/actualites/aucune.jpg"}),
-                               m("p", {"class":"title"}, item.properties.titre),
+                               m("p", {"class":"title titlePetition"}, item.properties.titre),
                                m("p", {"class":"subtitle truncate"}, item.properties.description ),
                                m("progress", {"class":"progress is-success","value":pourcent,"max":"100"}),
                                m("p", {"class":"has-text-centered"},
