@@ -38,13 +38,13 @@ public class PetitionInit extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-		String id_user, name_tag;
+		
 		response.setContentType("text/html");
 		response.setCharacterEncoding("UTF-8");
 
 		Random r = new Random();
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-		/*
+		
 		ArrayList<String> banqueTitre = new ArrayList<String>(List.of("Sauvons les tortues", "Protéger les enfants migrants isolés", "Stopper la maladie de Charcot et les autres maladies neurodégénératives", "Pour la libération d'Olivier Dbois, seul otage françaus au Monde depuis le 8 Avril 2021", "Un référendum pour l'hôpital public !", "Pour la liberté d'informer sur l'agroalimentaire en Bretagne et ailleurs", "Soutien à Vincent, supprimer l'amende"));
 		ArrayList<String> banqueDescription = new ArrayList<String>(List.of("C'est honteux", "Avec vous tout est possible", "il faut cesser cela", "faites une bonne action, signez", "one two three Viva l'Algérie", "nous garantissons un anonymat strict", "ne pas signer, c'est cautionner."));
 		ArrayList<String> banquePrenom = new ArrayList<String>(List.of("Jean", "Emenline", "Antoine", "Pascal", "Christophe", "Michel", "Luffy", "Roger"));
@@ -55,8 +55,10 @@ public class PetitionInit extends HttpServlet {
 		// Create users
 
 		for (int i =0; i<100; i++){
-			int indexNom = (int)(Math.random()*banqueNom.size());
-			int indexPrenom = (int)(Math.random()*banquePrenom.size());
+			//int indexNom = (int)(Math.random()*banqueNom.size());
+			//int indexPrenom = (int)(Math.random()*banquePrenom.size());
+			int indexNom = r.nextInt(banqueNom.size());
+			int indexPrenom = r.nextInt(banquePrenom.size());
 			String nom = banqueNom.get(indexNom);
 			String prenom = banquePrenom.get(indexPrenom);
 			String userId = prenom +""+ i +""+ nom;
@@ -77,12 +79,16 @@ public class PetitionInit extends HttpServlet {
 					} catch (ParseException e1) {
 						e1.printStackTrace();
 					}
-					int indexUser = (int)(Math.random()*userCree.size());
+					//int indexTheme = (int)(Math.random()*banqueTheme.size());
+					//int indexTitre = (int)(Math.random()*banqueTitre.size());
+					//int indexDescription = (int)(Math.random()*banqueDescription.size());
+					//int indexUser = (int)(Math.random()*userCree.size());
+					int indexTheme = r.nextInt(banqueTheme.size());
+					int indexTitre = r.nextInt(banqueTitre.size());
+					int indexDescription = r.nextInt(banqueDescription.size());
+					int indexUser =  r.nextInt(userCree.size());
 					String id_user = userCree.get(indexUser);
 					String petitionId=  date_formated + ":" + id_user + ":" + j;
-					int indexTheme = (int)(Math.random()*banqueTheme.size());
-					int indexTitre = (int)(Math.random()*banqueTitre.size());
-					int indexDescription = (int)(Math.random()*banqueDescription.size());
 					String theme = banqueTheme.get(indexTheme);
 					String titre = banqueTitre.get(indexTitre);
 					String description = banqueDescription.get(indexDescription);
@@ -94,10 +100,12 @@ public class PetitionInit extends HttpServlet {
 					p.setProperty("update_at", dateValue);
 					p.setProperty("proprietaire",  id_user);
 
-					int nbMaxSignataire = (int)(Math.random()*5);
+					int nbMaxSignataire = r.nextInt(5);
+					//int nbMaxSignataire = (int)(Math.random()*5);
 					int nbSignataire = 0;
 					while (nbSignataire < nbMaxSignataire) {
-						int indexSignataire = (int)(Math.random()*userCree.size());
+						//int indexSignataire = (int)(Math.random()*userCree.size());
+						int indexSignataire = r.nextInt(userCree.size());
 						String id_signataire = userCree.get(indexSignataire);
 						String s_date= RandomDate.randDate();
 						try {
@@ -115,13 +123,16 @@ public class PetitionInit extends HttpServlet {
 					}
 					
 					p.setProperty("nbSignataire", nbSignataire);
-					int objectif = (int)(Math.random()*20);
+					//int objectif = (int)(Math.random()*20);
+					int objectif = r.nextInt(20);
 					objectif = objectif + 50;
 					p.setProperty("objectifSignataire", objectif );
 					HashSet<String> listTag = new HashSet<String>();
-					int nbMaxTag = (int)(Math.random()*5);
+					//int nbMaxTag = (int)(Math.random()*5);
+					int nbMaxTag = r.nextInt(5);
 					for (int i =0; i < nbMaxTag; i++){
-						int indexTag = (int)(Math.random()*banqueTag.size());
+						//int indexTag = (int)(Math.random()*banqueTag.size());
+						int indexTag = r.nextInt(banqueTag.size());
 						String name_tag = banqueTag.get(indexTag);
 						if (!listTag.contains(name_tag)) {
 							listTag.add(name_tag);
@@ -132,9 +143,11 @@ public class PetitionInit extends HttpServlet {
 					p.setProperty("tag", listTag);
 					datastore.put(p);
 					response.getWriter().print("<li> created petition: " + p.getKey() + "<br>");
-		}*/
+		}
 
 		
+		/*
+		String id_user, name_tag;
 		for (int i = 0; i < 30; i++) {
 			for (int j = 0; j < 10; j++) {
 				String userId= i + "" +j;
@@ -166,24 +179,6 @@ public class PetitionInit extends HttpServlet {
 					p.setProperty("update_at", dateValue);
 					p.setProperty("proprietaire",  userId);
 					
-					
-					// Create signature
-					/*
-					HashSet<String> listSignataire = new HashSet<String>();
-					
-					int nbMaxSignataire = r.nextInt(500);
-					int nbSignataire = 0;
-					while (listSignataire.size() < nbMaxSignataire) {
-						id_user = r.nextInt(50) + "_" + r.nextInt(10);
-						if (!listSignataire.contains(id_user)) {
-						listSignataire.add(id_user);
-						nbSignataire++;
-						response.getWriter().print("<li> signature created: " + id_user + "<br>");
-						}
-					}
-					
-					p.setProperty("signataire", listSignataire);
-					*/
 					int nbMaxSignataire = r.nextInt(400);
 					int nbSignataire = 0;
 					while (nbSignataire < nbMaxSignataire) {
@@ -227,6 +222,6 @@ public class PetitionInit extends HttpServlet {
 						
 				}
 			}
-		}
+		}*/
 	}
 }
