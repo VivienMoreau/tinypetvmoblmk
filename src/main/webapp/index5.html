@@ -127,7 +127,7 @@
          z-index: 30;
          width: 640px;
          background-color: #4a4a4a!important;
-         color :rgb(255, 255, 255);
+         color :rgb(255, 255, 255)!important;
          border-color: transparent;
          text-align:center!important}
       form header p {
@@ -1133,7 +1133,7 @@
                                                              m("label", {"class":"label"},
                                                                      "Tag"
                                                              ),
-                                                             m("", {"class":"help  is-link is-light"},
+                                                             m("", {"class":"help  is-danger is-light"},
                                                                      "*"
                                                              ),
                                                              m("div", {"class":"control"},
@@ -1141,7 +1141,7 @@
                                                                         oninput: function (e) {Api_CrudPetition.item.tag_string = e.target.value},
                                                                         value: Api_CrudPetition.item.tag_string
                                                                      }),
-                                                                     m("p", {"class":"help  is-link is-light"},
+                                                                     m("p", {"class":"help  is-danger is-light"},
                                                                              "Maximum 10 tags par petition"
                                                                      )
                                                              )
@@ -1178,7 +1178,7 @@
                                                              m("label", {"class":"label"},
                                                                      "Description"
                                                              ),
-                                                             m("", {"class":"help  is-link is-light"},
+                                                             m("", {"class":"help  is-danger is-light"},
                                                                      "*"
                                                              ),
                                                              m("div", {"class":"control"},
