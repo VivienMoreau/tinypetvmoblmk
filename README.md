@@ -33,8 +33,8 @@ Nous avons perdu énormément de temps à git pull et deploy. Sans parler des no
 <strong>Fixtures</strong><br>
 Il semblerait que le datastore ait beaucoup de mal à accueillir un push de données important. Les erreurs 500 ont été régulières, même avec des fixtures qui marchaient auparavant, rendant les tests très laborieux.
 <br>
-
-Fonctionnalités du projet
+<br>
+<h2>Fonctionnalités du projet</h2>
  * Création de pétitions
  * Affichage des pétitions lancées/signées
  * Parcourir les pétitions les plus récentes
