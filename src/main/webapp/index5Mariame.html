@@ -10,10 +10,7 @@
    <!--<link href="style.css" rel="stylesheet" media="all" type="text/css"> -->
 
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-   <link rel="stylesheet" href="style.css" />
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-<!---
+
    <style>
       .nav {
          display: flex;
@@ -26,7 +23,7 @@
       td, th,.subtitle {
          text-align: center!important}
       .cendre {
-         background: #4a4a4a;
+         background: #f3f3f3;
       }
       .p-30.cendre {
          min-height:500px;}
@@ -36,8 +33,8 @@
       .m-0{
          margin: 0px !important}
       .is-active a{
-         border-bottom-color: #d10000!important;
-         color: #d10000!important;
+         border-bottom-color: #4183c4;
+         color: #4183c4;
          font-weight: 500;}
       .p-30 {
          padding: 30px;
@@ -53,9 +50,9 @@
          margin: auto;
          width: 100%;
          height: 250px;
-         background: #4a4a4a;}
+         background: #adadad;}
       .link {
-         color: #d10000!important;
+         color: #4183c4;
          font-weight: 500;
       }
       .truncate {
@@ -70,15 +67,15 @@
          padding: 22px;
       }
       a.navbar-item.is-active,a.navbar-item:hover,a.navbar-item:active{
-         background: #4a4a4a!important;
-         color: #d10000!important;
+         background: #fafafa!important;
+         color: #4183c4!important;
       }
       .pagination {
          justify-content: center;
       }
       .tabs span{
          align-items: center;
-         color: #ffffff;
+         color: #4a4a4a;
          display: flex;
          justify-content: center;
          margin-bottom: -1px;
@@ -129,11 +126,11 @@
          position: fixed!important;
          z-index: 30;
          width: 640px;
-         background-color: #d10000!important;
+         background-color: #4183c4;
          border-color: transparent;
          text-align:center!important}
       form header p {
-         color: #4a4a4a!important;
+         color: #fff!important;
       }
       form section {
          padding-top: 73px!important}
@@ -168,32 +165,23 @@
       .mt-8{
          margin-top:8px}
       .link.dark{
-         color:rgb(255, 255, 255)!important}
+         color:black!important}
       .search .control{
          padding-left: 165px;
          width: auto!important;}
       .search li span{
          margin:0!important;}
       .search li.is-active a{
-         background-color:  #d10000!important;
-         border-color:  #d10000!important;
+         background-color:  #4183c4;
+         border-color:  #4183c4;
       }
       .search li.is-active span{
-         color: #4a4a4a!important;
+         color: #fff!important;
          font-weight:500}
       .g-signin2{
          margin-bottom:10px}
-      .gris{
-         background-color: #4a4a4a;
-      }
-      .title {
-         color: #ffffff;
-      }
-      a{
-         color : #ffffff !important;
-      }
    </style>
--->
+
 
    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
    <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -202,7 +190,7 @@
 
 
 </head>
-<body class="has-navbar-fixed-top gris" id="body">
+<body class="has-navbar-fixed-top" id="body">
 
 
 <script>
@@ -238,7 +226,7 @@
          closeNotification(notification.id);
       }
    }
-   function startNotification(message,classSup="is-link",id="notification"){
+   function startNotification(message,classSup="is-primary",id="notification"){
       notification.Duree = 0;
       notification.message=message;
       notification.classSup=classSup;
@@ -604,7 +592,7 @@
                     API_MyPetitionCreated.list = result.items;
                     scrollToTop();
                     if (result.items.length == 0){
-                       startNotification("Aucune pétition crée pour le moment");
+                       startNotification("Aucune pétition créée pour le moment");
                     }else{
                        var last =result.items[result.items.length - 1].key.name;
                        var previousNext = API_MyPetitionCreated.next[API_MyPetitionCreated.next.length - 1];
@@ -647,7 +635,7 @@
                     API_MyPetitionSigned.list = result.items;
                     scrollToTop();
                     if (result.items.length == 0){
-                       startNotification("Aucune pétition signé pour le moment");
+                       startNotification("Aucune pétition signée pour le moment");
                     }else{
                        var last =result.items[result.items.length - 1].key.name;
                        var previousNext = API_MyPetitionSigned.next[API_MyPetitionSigned.next.length - 1];
@@ -1012,7 +1000,7 @@
                                                                                                 m("span",  m("a", {"class":"link", onclick: function(e) {
                                                                                                                       e.preventDefault();
                                                                                                                       if(API_infoPetition.item.proprietaire == userConnecter.id){
-                                                                                                                         startNotification("Operation invalide : Vous ne pouvez pas signer vos propres petitions!","is-link","notificationDetailPetition")
+                                                                                                                         startNotification("Operation invalide : Vous ne pouvez pas signer vos propres petitions!","is-primary","notificationDetailPetition")
                                                                                                                       } else {
                                                                                                                          if(API_SignaturePetition.isSigned){
                                                                                                                             API_SignaturePetition.deleteSignature(API_infoPetition.item.ID)
@@ -1223,12 +1211,12 @@
       view : function(){
 
          return [m("script", {"src":"https://apis.google.com/js/platform.js","async":"async","defer":"defer"}),
-            m("nav", {"class":"navbar is-fixed-top box gris","role":"navigation","aria-label":"main navigation"},
+            m("nav", {"class":"navbar is-fixed-top box","role":"navigation","aria-label":"main navigation"},
                     [
                        m("div", {"class":"navbar-brand"},
                                [
                                   m("a", {"class":"","href":"#"},
-                                          m("img", {"src":"logo.png", "heigt" : "80", "width" : "80"})),
+                                          m("img", {"src":"logo.png"})),
                                   m("a", {"class":"navbar-burger","role":"button","aria-label":"menu","aria-expanded":"false","data-target":"navbarBasic"},
                                           [ m("span", {"aria-hidden":"true"}),m("span", {"aria-hidden":"true"}),m("span", {"aria-hidden":"true"})])
                                ]
@@ -1309,7 +1297,7 @@
                                   }},  "Les pétitions récentes")),
                                m("li", {class: currentURL == "/Top100Signed" ? "is-active" : ""}, m(m.route.Link, {href: "/top100Signed",onclick: function(e) {
                                      currentURL = '/Top100Signed';
-                                  }},  "Top pétitions signées"))
+                                  }},  "Top pétitions signés"))
 
                             ]
                     )
@@ -1722,6 +1710,5 @@
       "/SearchPetition": SearchPetition,
    })
 </script>
-<script src="../bower_components/moment/moment.js"></script>
 </body>
 </html>

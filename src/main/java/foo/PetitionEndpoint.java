@@ -189,9 +189,7 @@ public class PetitionEndpoint {
 			if(nbTag==10) {
 				break; //on limite à 10 tag par petition
 			}
-			
 		}
-		
 		e.setProperty("tag", listTag);
 		e.setProperty("tag_string", tagString);
 		
