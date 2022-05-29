@@ -1,0 +1,9 @@
+{
+  "name": "05_todo-list_built-in-directives",
+  "version": "1.0.0",
+  "dependencies": {
+    "jquery": "2.2.4",
+    "angular": "1.5.8",
+    "moment": "^2.29.3"
+  }
+}

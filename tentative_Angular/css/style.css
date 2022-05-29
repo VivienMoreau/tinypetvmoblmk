@@ -1,0 +1,34 @@
+.nav-link {
+    color : white !important;
+}
+.nav-link-noir {
+    color : #212529 !important;
+}
+.active {
+    color : #212529 !important;
+}
+.marge-haute-petit {
+    padding-top: 7px;
+}
+.marge-haute-moyenne {
+    padding-top: 15px;
+}
+.marge-haute {
+    padding-top: 10px !important;
+}
+.marge-gauche {
+    padding-left: 10px;
+}
+.marge-droite {
+    padding-right: 10px;
+}
+.active-underline {
+    text-decoration: underline;
+    text-decoration-color: #E34234;
+}
+.pas-souligne {
+    text-decoration: none !important;
+}
+.card-img-top {
+    object-fit: cover;
+}
