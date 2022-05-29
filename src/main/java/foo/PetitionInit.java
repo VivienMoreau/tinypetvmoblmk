@@ -51,6 +51,7 @@ public class PetitionInit extends HttpServlet {
 		ArrayList<String> banqueNom = new ArrayList<String>(List.of("Dupuis", "Dupont", "Dubois", "Michel", "Aubert", "Poulain", "Molli", "Andrivot"));
 		ArrayList<String> banqueTheme = new ArrayList<String>(List.of("Guerre", "Enfance", "Ecologie", "Politique", "Divers"));
 		ArrayList<String> banqueTag = new ArrayList<String>(List.of("balanceton", "meto", "paix", "guerre", "electionmissfrance"));
+		ArrayList<String> banqueImage = new ArrayList<String>(List.of("https://www.chauche.fr/medias/2021/08/sante.jpg", "https://mouvement-europeen.eu/wp-content/uploads/2019/05/LA-PAIX.jpg", "https://information.tv5monde.com/sites/info.tv5monde.com/files/styles/large/public/assets/images/AP_18173350793999.jpg?itok=aC--UucV", "https://img.passeportsante.net/1200x675/2021-05-03/i102999-bebe-3-mois.webp", "https://media.lesechos.com/api/v1/images/view/5bf3e7858fe56f2005755ea9/1280x720/2156226-trois-leviers-pour-lagriculture-de-lavenir-web-tete-0301339641731.jpg","http://www.slate.fr/sites/default/files/styles/1200x680/public/ella-ivanescu-pollution-unsplash.jpg"));
 		ArrayList<String> userCree = new ArrayList<String>();
 		// Create users
 
@@ -130,6 +131,7 @@ public class PetitionInit extends HttpServlet {
 					HashSet<String> listTag = new HashSet<String>();
 					//int nbMaxTag = (int)(Math.random()*5);
 					int nbMaxTag = r.nextInt(5);
+					String tagString = "";
 					for (int i =0; i < nbMaxTag; i++){
 						//int indexTag = (int)(Math.random()*banqueTag.size());
 						int indexTag = r.nextInt(banqueTag.size());
@@ -137,10 +139,14 @@ public class PetitionInit extends HttpServlet {
 						if (!listTag.contains(name_tag)) {
 							listTag.add(name_tag);
 							response.getWriter().print("<li> tag created: " + name_tag + "<br>");
+							tagString += name_tag+";";
 						}
 					}
-					
+					int indexImage =  r.nextInt(banqueImage.size());
+					String image = banqueImage.get(indexImage);
+					p.setProperty("img_url", image);
 					p.setProperty("tag", listTag);
+					p.setProperty("tag_string", tagString);
 					datastore.put(p);
 					response.getWriter().print("<li> created petition: " + p.getKey() + "<br>");
 		}
