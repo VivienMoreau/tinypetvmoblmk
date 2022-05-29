@@ -42,4 +42,6 @@ Il semblerait que le datastore ait beaucoup de mal à accueillir un push de donn
  <li>Rechercher les pétitions par titre ou tag</li></ul>
 
 <h2>Apercu du site de pétitions</h2>
-
+<br>
+Les pétition
+!(/screens/LesPétitionsLesPlusSignées.png "San Juan Mountains")
