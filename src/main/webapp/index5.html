@@ -126,7 +126,8 @@
          position: fixed!important;
          z-index: 30;
          width: 640px;
-         background-color: #d10000!important;
+         background-color: #4a4a4a!important;
+         color :rgb(255, 255, 255);
          border-color: transparent;
          text-align:center!important}
       form header p {
@@ -1087,7 +1088,7 @@
                                     [
                                        m("header", {"class":"modal-card-head"},
                                                [
-                                                  m("p", {"class":"modal-card-title"},
+                                                  m("p", {"class":"modal-card-title has-text-weight-bold"},
                                                           "Créer une petition"
                                                   ),
                                                   m("button", {onclick: function(e) {
@@ -1103,7 +1104,7 @@
                                                              m("label", {"class":"label"},
                                                                      "Titre"
                                                              ),
-                                                             m("", {"class":"help  is-link is-light"},
+                                                             m("", {"class":"help  is-danger is-light"},
                                                                      " * "
                                                              ),
                                                              m("div", {"class":"control"},

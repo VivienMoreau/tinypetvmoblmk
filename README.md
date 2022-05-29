@@ -8,7 +8,7 @@ Lien vers le projet Google Cloud Platform : https://tinypetvimaox.ew.r.appspot.c
 Ce projet a été réalisé par KABA Mariame, BERNARD-LEROUX Oxana et MOREAU Vivien.
 <br>
 <h2>Tentative AngularJS</h2><br>
-Dans un premier temps, nous avons voulu réaliser la partie front end de ce projet en AngularJS car il s’agit du framework javascript que nous maîtrisons le mieux et qui peut faire appel à une API Rest. Pour la partie CSS, nous avons utilisé la librairie bootstrap. 
+Dans un premier temps, nous avons voulu réaliser la partie front end de ce projet en AngularJS car il s’agit du framework javascript que nous maîtrisons le mieux et qui peut faire appel à une API Rest. Pour la partie CSS, nous avons utilisé la librairie bootstrap.  Nous avons aussi utilisé moment.js pour la gestion des dates.
 Après avoir obtenu un affichage qui nous convenait, nous avons tenté de lier les contrôleurs à l’API. Ce que nous pensions n’être qu’un “simple branchement” entre le front et le back nous a causé beaucoup d’erreurs que nous n’avons pas réussi à corriger. 
 <br>
 <h2>Reprise projet</h2><br>
@@ -59,3 +59,5 @@ Création Pétition
 <img src= "/screens/CréationPétition.png">
 Details Pétition
 <img src= "/screens/DetailsPetition.png">
+<h2>Conclusion</h2>
+<br>
